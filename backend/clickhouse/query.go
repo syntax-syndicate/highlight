@@ -938,7 +938,7 @@ func ReadFunnels[T ~string](ctx context.Context, client *Client, sampleableConfi
 		}
 		s := params.Steps[row.stepNum]
 		metrics.Buckets = append(metrics.Buckets, &modelInputs.MetricBucket{
-			Group:       append(make([]string, 0), s.Step),
+			Group:       append(make([]string, 0), strings.Join([]string{s.Column, s.Step}, " ")),
 			MetricValue: ptr.Float64(float64(row.count)),
 		})
 	}
